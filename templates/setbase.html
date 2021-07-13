@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<style>
+		body {
+			background-color: #2d3e50;
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			}
+		.footer {
+			  left: 0;
+			  bottom: 0;
+			  width: 100%;
+			  height: 30px;
+			  background-color: rgb(33, 37, 41);
+			  color: antiquewhite;
+			  text-align: right;
+			  padding-right: 150px;
+			margin-top: auto;
+			}
+	</style>
+	<title>
+		{% block title %}{% endblock %}
+
+	</title>
+	<link rel="icon" href="{{url_for('static',filename = 'images/osrslogo.png')}}" type = "image/x-icon">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img src="{{url_for('static',filename = 'images/osrslogo.png')}}" alt="" width="30" height="24" class="d-inline-block align-text-top" >
+					Set Prices
+				</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+						<a class="nav-link" href="https://github.com/TyeWalker">Github</a>
+					</div>
+				</div>
+			</div>
+	</nav>
+
+
+<div class="container mx-auto " style="padding-bottom: 100px">
+	<div class="row">
+		<div class="col" style="margin-top: 10px">
+			<h4 style="display:inline; color:white;">{% block tableheading %}{% endblock %}</h4>
+	<span style="font-size: medium; font-family: Arial; ">
+		<div class="table-responsive">
+		<table class="table table-bordered table-dark" style="text-align:center; margin-bottom: 50px;">
+			<thead>
+				<tr>
+					<th>itemID</th>
+					<th>Image</th>
+					<th>Item</th>
+					<th>High (sell)</th>
+					<th>High Time</th>
+					<th>Low (offer)</th>
+					<th>Low Time</th>
+					<th>Margin</th>
+					<th>ROI</th>
+					<th>Volume(1hr)</th>
+					<th>Volume(1d)</th>
+					<th>GE Limit</th>
+					<th>High Alch</th>
+				</tr>
+			</thead>
+			<tbody >
+				{% for row in ItemRow %}
+					<tr >
+						<td>{{ row[0] }}</td>
+						<div id="image_insert">
+							<td><img src="{{url_for('static',filename = 'images/'+ row[1])}}" alt="" width="30" height="24" class="d-inline-block align-text-top"></td>
+						</div>
+						<td>{{ row[2] }}</td>
+						<td>{{ row[3] }}</td>
+						<td>{{ row[4] }}</td>
+						<td>{{ row[5] }}</td>
+						<td>{{ row[6] }}</td>
+						<td>{{ row[7] }}</td>
+						<td>{{ row[8] }}</td>
+						<td>{{ row[9] }}</td>
+						<td>{{ row[10] }}</td>
+						<td>{{ row[11] }}</td>
+						<td>{{ row[12] }}</td>
+<!--						{% for cell in row %}-->
+<!--						<td>{{ cell }}</td>-->
+<!--						{% endfor %}-->
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+			</div>
+		</span>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<div>
+				<table class="table table-bordered table-dark" style="text-align:center; ">
+					<thead>
+						<tr>
+							<th>Individual:</th>
+							<th>High</th>
+							<th>Low</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Item Total:</td>
+							<td>{{ itemHighTotal }}</td>
+							<td>{{ itemLowTotal }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<table class="table table-bordered table-dark" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>Item:</th>
+							<th>OSRS Wiki</th>
+							<th>PlatinumTokens</th>
+							<th>GE TRACKER</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for x in item_html_link %}
+					<tr>
+						<td>{{ x[0] }}</td>
+						<td><a href="{{ x[1] }}" style="color: rgb(245,245,245);">wiki</a></td>
+						<td><a href="{{ x[2] }}" style="color: rgb(245,245,245);">plat-tokens</a></td>
+						<td><a href="{{ x[3] }}" style="color: rgb(245,245,245);">ge-tracker</a></td>
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col">
+			<div>
+	<canvas id="myChart3" width="600" height="326" style="background-color: aliceblue"></canvas>
+	<script>
+
+new Chart("myChart3", {
+  type: "line",
+  data: {
+    labels: [{% for item in high_labels %}
+							"{{ item }}",
+						  {% endfor %}],
+    datasets: [{
+    	label: 'High Price',
+      data: [{% for item in high_values %}
+              {{ item }},
+            {% endfor %}],
+      borderColor: "rgb(34,139,34)",
+      fill: false,
+	  lineTension:0
+    },{
+    	label: 'Low Price',
+      data: [{% for zz in low_values %}
+									  {{ zz }},
+									{% endfor %}],
+      borderColor: "rgb(30,144,255)",
+      fill: false,
+	  lineTension:0
+    }]
+  },
+  options: {
+  	title: {
+      display: true,
+      text: "Set Prices Over 24 Hours",
+      fontSize: 16
+    },
+    legend: {display: true}
+  }
+});
+	</script>
+</div>
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+	<p>Author: Tye Walker</p>
+</footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

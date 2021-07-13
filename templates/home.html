@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+		body {
+			background-color: #2d3e50;
+            display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			}
+		.footer {
+			  left: 0;
+			  bottom: 0;
+			  width: 100%;
+			  height: 30px;
+			  background-color: rgb(33, 37, 41);
+			  color: antiquewhite;
+			  text-align: right;
+			  padding-right: 150px;
+			margin-top: auto;
+			}
+	</style>
+      <meta charset="UTF-8">
+    <title>OSRS Price Sets</title>
+    <link rel="icon" href="{{url_for('static',filename = 'images/osrslogo.png')}}" type = "image/x-icon">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img src="{{url_for('static',filename = 'images/osrslogo.png')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+					Set Prices
+				</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+						<a class="nav-link" href="https://github.com/TyeWalker">Github</a>
+					</div>
+				</div>
+			</div>
+	</nav>
+
+
+<script>
+    function MakeNegative() {
+  TDs = document.getElementsByTagName('td');
+  for (var i = 0; i < TDs.length; i++) {
+    var temp = TDs[i];
+    if (temp.firstChild.nodeValue.indexOf('-') == 0) temp.className = "negative";
+  }
+}
+</script>
+
+
+
+<div class="container mx-auto " style="padding-top: 100px; padding-right: 200px; padding-left: 200px;">
+  <h3 style="color: aliceblue">Barrows</h3>
+  <table class="table table-bordered table-dark" style="text-align:left; margin-bottom: 1px;color: aliceblue;">
+    <thead>
+      <tr style="text-align: center;">
+        <th>ItemID:</th>
+        <th>Name:</th>
+        <th>High Price:</th>
+        <th>Updated:</th>
+        <th>Low Price:</th>
+        <th>Updated:</th>
+          <th>Margin:</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in barrows %}
+      <tr>
+         <td style="text-align: center;">{{ x[0] }}</td>
+         <td ><img src="{{url_for('static',filename = 'images/'+ x[1])}}" alt="" width="30" height="24" class="d-inline-block align-text-top" ><a href="../../sets/{{x[7] }}" style="color: lightgreen; text-decoration: none">{{ x[2]}} </a></td>
+         <td style="text-align: center;">{{ x[3] }}</td>
+         <td style="text-align: center;">{{ x[4] }}</td>
+         <td style="text-align: center;">{{ x[5] }}</td>
+         <td style="text-align: center;">{{ x[6] }}</td>
+          <td style="text-align: center;">{{ x[8] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="container mx-auto " style="padding-top: 30px; padding-right: 200px; padding-left: 200px;">
+  <h3 style="color: aliceblue">Gold-trimmed standard metal (lg)</h3>
+  <table class="table table-bordered table-dark" style="text-align:left; margin-bottom: 50px;color: aliceblue;">
+    <thead>
+      <tr style="text-align: center;">
+        <th>ItemID:</th>
+        <th>Name:</th>
+        <th>High Price:</th>
+        <th>Updated:</th>
+        <th>Low Price:</th>
+        <th>Updated:</th>
+          <th>Margin:</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in gtlegs %}
+      <tr>
+         <td style="text-align: center;">{{ x[0] }}</td>
+         <td ><img src="{{url_for('static',filename = 'images/'+ x[1])}}" alt="" width="30" height="24" class="d-inline-block align-text-top" ><a href="../../sets/{{x[7] }}" style="color: lightgreen; text-decoration: none">{{ x[2]}} </a></td>
+         <td style="text-align: center;">{{ x[3] }}</td>
+         <td style="text-align: center;">{{ x[4] }}</td>
+         <td style="text-align: center;">{{ x[5] }}</td>
+         <td style="text-align: center;">{{ x[6] }}</td>
+          <td style="text-align: center;">{{ x[8] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="container mx-auto " style="padding-top: 30px; padding-right: 200px; padding-left: 200px;">
+  <h3 style="color: aliceblue">Trimmed standard metal (lg)</h3>
+  <table class="table table-bordered table-dark" style="text-align:left; margin-bottom: 50px;color: aliceblue;">
+    <thead>
+      <tr style="text-align: center;">
+        <th>ItemID:</th>
+        <th>Name:</th>
+        <th>High Price:</th>
+        <th>Updated:</th>
+        <th>Low Price:</th>
+        <th>Updated:</th>
+          <th>Margin:</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in tsmlegs %}
+      <tr>
+         <td style="text-align: center;">{{ x[0] }}</td>
+         <td ><img src="{{url_for('static',filename = 'images/'+ x[1])}}" alt="" width="30" height="24" class="d-inline-block align-text-top" ><a href="../../sets/{{x[7] }}" style="color: lightgreen; text-decoration: none">{{ x[2]}} </a></td>
+         <td style="text-align: center;">{{ x[3] }}</td>
+         <td style="text-align: center;">{{ x[4] }}</td>
+         <td style="text-align: center;">{{ x[5] }}</td>
+         <td style="text-align: center;">{{ x[6] }}</td>
+          <td style="text-align: center;">{{ x[8] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="container mx-auto " style="padding-top: 30px; padding-right: 200px; padding-left: 200px;">
+  <h3 style="color: aliceblue">Gold-Trimmed Standard Metal (sk)</h3>
+  <table class="table table-bordered table-dark" style="text-align:left; margin-bottom: 50px;color: aliceblue;">
+    <thead>
+      <tr style="text-align: center;">
+        <th>ItemID:</th>
+        <th>Name:</th>
+        <th>High Price:</th>
+        <th>Updated:</th>
+        <th>Low Price:</th>
+        <th>Updated:</th>
+          <th>Margin:</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in gtskirt %}
+      <tr>
+         <td style="text-align: center;">{{ x[0] }}</td>
+         <td ><img src="{{url_for('static',filename = 'images/'+ x[1])}}" alt="" width="30" height="24" class="d-inline-block align-text-top" ><a href="../../sets/{{x[7] }}" style="color: lightgreen; text-decoration: none">{{ x[2]}} </a></td>
+         <td style="text-align: center;">{{ x[3] }}</td>
+         <td style="text-align: center;">{{ x[4] }}</td>
+         <td style="text-align: center;">{{ x[5] }}</td>
+         <td style="text-align: center;">{{ x[6] }}</td>
+          <td style="text-align: center;">{{ x[8] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="container mx-auto " style="padding-top: 30px; padding-right: 200px; padding-left: 200px;">
+  <h3 style="color: aliceblue">Trimmed Standard Metal (sk)</h3>
+  <table class="table table-bordered table-dark" style="text-align:left; margin-bottom: 50px;color: aliceblue;" >
+    <thead>
+      <tr style="text-align: center;">
+        <th>ItemID:</th>
+        <th>Name:</th>
+        <th>High Price:</th>
+        <th>Updated:</th>
+        <th>Low Price:</th>
+        <th>Updated:</th>
+        <th>Margin:</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in tsmskirt %}
+      <tr>
+         <td style="text-align: center;">{{ x[0] }}</td>
+         <td ><img src="{{url_for('static',filename = 'images/'+ x[1])}}" alt="" width="30" height="24" class="d-inline-block align-text-top" ><a href="../../sets/{{x[7] }}" style="color: lightgreen; text-decoration: none">{{ x[2]}} </a></td>
+         <td style="text-align: center;">{{ x[3] }}</td>
+         <td style="text-align: center;">{{ x[4] }}</td>
+         <td style="text-align: center;">{{ x[5] }}</td>
+         <td style="text-align: center;">{{ x[6] }}</td>
+         <td style="text-align: center;">{{ x[8] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="container mx-auto " style="padding-top: 30px; padding-right: 200px; padding-left: 200px;">
+  <h3 style="color: aliceblue">God-blessed dragonhide</h3>
+  <table class="table table-bordered table-dark" style="text-align:left; margin-bottom: 50px;color: aliceblue;">
+    <thead>
+      <tr style="text-align: center;">
+        <th>ItemID:</th>
+        <th>Name:</th>
+        <th>High Price:</th>
+        <th>Updated:</th>
+        <th>Low Price:</th>
+        <th>Updated:</th>
+          <th>Margin:</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in godblessed %}
+      <tr>
+         <td style="text-align: center;">{{ x[0] }}</td>
+         <td ><img src="{{url_for('static',filename = 'images/'+ x[1])}}" alt="" width="30" height="24" class="d-inline-block align-text-top" ><a href="../../sets/{{x[7] }}" style="color: lightgreen; text-decoration: none">{{ x[2]}} </a></td>
+         <td style="text-align: center;">{{ x[3] }}</td>
+         <td style="text-align: center;">{{ x[4] }}</td>
+         <td style="text-align: center;">{{ x[5] }}</td>
+         <td style="text-align: center;">{{ x[6] }}</td>
+          <td style="text-align: center;">{{ x[8] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+<footer class="footer">
+	<p>Author: Tye Walker</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
