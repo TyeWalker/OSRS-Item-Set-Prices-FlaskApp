@@ -16,4 +16,7 @@ to your discord username. See [HERE](https://oldschool.runescape.wiki/w/RuneScap
 for more info about user agents.
 
 To run the app, make sure you have the [DBMaintenance](https://github.com/TyeWalker/OSRS-Item-Set-Prices-DBMaintenance) running, as this programme keeps the database up to date.  
-
+Run main.py in your cmd and go to the following URL in your browser: http://127.0.0.1:5000/
+  Then simply click on the items you want to view to show the margins.
+  
+  ***Please Note:** For the graph to be accurate, the programme will need to run continously, as it constantly fetches the prices from the OSRS wiki API.*
