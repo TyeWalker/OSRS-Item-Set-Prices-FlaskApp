@@ -1,3 +1,5 @@
+This project is deprecated. A new version is being built. [Click here](https://github.com/TyeWalker/OSRSItemTracker) to go to the repo.
+
 # OSRS-Item-Set-Prices-FlaskApp
 
 OSRS Item Set Prices App created using Python(3), Flask, and Bootstrap (HTML/CSS + javascript). This programme is designed to track the prices and margin of 
